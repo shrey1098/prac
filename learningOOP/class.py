@@ -79,14 +79,22 @@ class Car():
         now_time = time.time()
         time_elapsed = now_time - self.start_time
         self.distance = self.speed * time_elapsed
-        print(self.distance)
         threading.Timer(5, self.dist).start()
 
 
 x = Car('manual')
-print(f"speed is: {x.speed}")
-print(f"gear is: {x.gear_num}")
+x.dist()
+while True:
+    print(f"speed is: {x.speed}")
+    print(f"gear is: {x.gear_num}")
+    print(x.distance)
+    y = input("Accelerate, Break or cruise (A/B/C): ")
+    if x.type == 'manual':
+        if y == "a":
+            x.manual_gear_up_logic()
 
-x.breaks(2)
-print(f"speed is: {x.speed}")
-print(f"gear is: {x.gear_num}")
+        elif y == "b":
+            magnitude = input("break magnitude: ")
+            x.breaks(int(magnitude))
+
+
